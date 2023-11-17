@@ -23,5 +23,11 @@
     <ClInclude Include="Binary-Decision-Tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Breast-Cancer-Classifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="patient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
