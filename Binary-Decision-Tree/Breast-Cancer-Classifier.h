@@ -6,6 +6,12 @@
 class Classifier {
 
 private:
-	Node<T>* root;
-	
-}
+	Node<Patient>* root;
+
+public:
+
+	Classifier() {
+		root = new RootNode<Patient>();
+	};
+
+};
