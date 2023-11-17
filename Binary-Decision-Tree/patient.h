@@ -12,7 +12,11 @@ namespace PatientInfo {
 	const attribute_t MIN_SIZE = 1;
 	const attribute_t MAX_SIZE = 10;
 
-	// Struct to hold patients values
+	/** STRUCTS **/
+
+	/**
+	 * @brief Helps hold all patient values
+	*/
 	struct Attributes {
 		attribute_t clump_thickness_;
 		attribute_t size_uniformity_;
@@ -26,8 +30,13 @@ namespace PatientInfo {
 	};
 
 
+	/** ENUMS **/
 
-	// Helper methods for class
+	enum classifications {unclassified = 0, error=-1, benign=2, malignant=4};
+
+
+
+	/** HELPER FUNCTIONS **/
 
 	void is_valid_attribute(const attribute_t attribute) {
 
@@ -52,20 +61,27 @@ namespace PatientInfo {
 
 	}
 
+	/** CLASSES **/
 
 	class Patient {
 
 	private:
 
 		const std::string patientID_;
-		int classification_;
+		classifications classification_;
 		const Attributes patientAttributes;
 
 	public:
 
-		Patient(const std::string patientID, Attributes values) : patientID_(patientID), patientAttributes(values) {
+		/** CONSTRUCTOR **/
+
+		Patient(const std::string patientID, Attributes values) : 
+			patientID_(patientID), patientAttributes(values), classification_(unclassified) {
+
 			verify_attribute_struct(values);
 		};
+
+
 
 	};
 }
