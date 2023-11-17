@@ -127,12 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Binary-Decision-Tree.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Binary-Decision-Tree.h" />
     <ClInclude Include="Breast-Cancer-Classifier.h" />
     <ClInclude Include="patient.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
