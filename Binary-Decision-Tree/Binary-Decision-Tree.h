@@ -6,8 +6,8 @@ template <typename T>
 class Node {
 
 protected:
-	Node* leftNode;		/** IF CONDITION EVALUATES TO FALSE **/
-	Node* rightNode;	/** IF CONDITION EVALUATES TO TRUE  **/
+	const Node* leftNode;		/** IF CONDITION EVALUATES TO FALSE **/
+	const Node* rightNode;	/** IF CONDITION EVALUATES TO TRUE  **/
 
 	const std::function<bool(T)> condition;	/** CONDITION FOR EVALUATION **/
 
@@ -31,6 +31,20 @@ public:
 
 	/** CONSTRUCTOR **/
 	Node(const std::function<bool(T)>& func) : condition(func) {};
+
+	/** DESTRUCTOR **/
+
+	~Node() {
+
+		if (leftNode != nullptr) {
+			delete leftNode;
+		}
+
+		if (rightNode != nullptr) {
+			delete rightNode;
+		}
+
+	}
 
 	/** GETTERS AND SETTERS **/
 
@@ -71,7 +85,7 @@ class LeafNode : public Node<T> {
 
 protected:
 	
-	virtual bool make_decision(T val) const override{
+	virtual bool make_decision(const T& val) const override{
 
 		return Node<T>::condition(val);
 
