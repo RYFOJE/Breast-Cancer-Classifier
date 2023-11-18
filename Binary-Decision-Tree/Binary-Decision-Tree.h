@@ -9,14 +9,14 @@ protected:
 	const Node* leftNode;		/** IF CONDITION EVALUATES TO FALSE **/
 	const Node* rightNode;	/** IF CONDITION EVALUATES TO TRUE  **/
 
-	const std::function<bool(T)> condition;	/** CONDITION FOR EVALUATION **/
+	const std::function<bool(T&)> condition;	/** CONDITION FOR EVALUATION **/
 
 	/**
 	 * @brief	Make decision based on condition
 	 * @param	T the value used to make the decision
 	 * @return	bool the decision made based on the condition (false -> leftNode, true -> rightNode)
 	*/
-	virtual bool make_decision(const T &val) const {
+	virtual bool make_decision(T &val) const {
 
 		if (!condition(val)) {
 			return leftNode->make_decision(val);
@@ -30,7 +30,7 @@ protected:
 public:
 
 	/** CONSTRUCTOR **/
-	Node(const std::function<bool(T)>& func) : condition(func) {};
+	Node(const std::function<bool(T&)>& func) : condition(func), leftNode(nullptr), rightNode(nullptr) {};
 
 	/** DESTRUCTOR **/
 
@@ -72,9 +72,9 @@ class RootNode : public Node<T> {
 public:
 	
 	/** CONSTRUCTOR **/
-	RootNode(const std::function<bool(T)>& func) : Node<T>(func) {};
+	RootNode(const std::function<bool(T&)>& func) : Node<T>(func) {};
 
-	bool process(const T &val) const{
+	bool process(T &val) const{
 		return Node<T>::make_decision(val);
 	}
 	
@@ -85,7 +85,7 @@ class LeafNode : public Node<T> {
 
 protected:
 	
-	virtual bool make_decision(const T& val) const override{
+	virtual bool make_decision(T& val) const override{
 
 		return Node<T>::condition(val);
 
@@ -94,5 +94,5 @@ protected:
 public:
 
 	/** CONSTRUCTOR **/
-	LeafNode(const std::function<bool(T)>& func) : Node<T>(func) {};
+	LeafNode(const std::function<bool(T&)>& func) : Node<T>(func) {};
 };

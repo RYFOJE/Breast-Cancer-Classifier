@@ -6,7 +6,7 @@
 using namespace PatientInfo;
 
 class Classifier {
-
+	
 private:
 
 	// Create typedefs for Nodes as they will be often re-written
@@ -21,46 +21,46 @@ public:
 	Classifier() {
 		
 		root = new Root_t(
-			[](Patient patient) {return patient.get_size_uniformity() <= 2; }
+			[](Patient& patient) {return patient.get_size_uniformity() <= 2; }
 		);
 		
 		// CREATING ALL NODES FOR RIGHT SIDE OF THE TREE
 
 		// Uniformity of cell size is <= 2
 		Node_t* Node_R = new Node_t(
-			[](Patient patient) {return patient.get_bare_nuclei() <= 3; }
+			[](Patient& patient) {return patient.get_bare_nuclei() <= 3; }
 		);
 		
 		Leaf_t* Node_RR = new Leaf_t(
-			[](Patient patient) {patient.set_classification(benign); return false; }
+			[](Patient& patient) {patient.set_classification(benign); return false; }
 		);
 
 		Node_t* Node_RL = new Node_t(
-			[](Patient patient) {return patient.get_clump_thickness() <= 3; }
+			[](Patient& patient) {return patient.get_clump_thickness() <= 3; }
 		);
 
 		Leaf_t* Node_RLR = new Leaf_t(
-			[](Patient patient) {patient.set_classification(malignant); return true; }
+			[](Patient& patient) {patient.set_classification(malignant); return true; }
 		);
 
 		Node_t* Node_RLL = new Node_t(
-			[](Patient patient) {return patient.get_bland_chromatin() <= 2; }
+			[](Patient& patient) {return patient.get_bland_chromatin() <= 2; }
 		);
 
 		Node_t* Node_RLLR = new Node_t(
-			[](Patient patient) {return patient.get_marginal_adhesion() <= 3; }
+			[](Patient& patient) {return patient.get_marginal_adhesion() <= 3; }
 		);
 
 		Leaf_t* Node_RLLL = new Leaf_t(
-			[](Patient patient) {patient.set_classification(malignant); return true; }
+			[](Patient& patient) {patient.set_classification(malignant); return true; }
 		);
 
 		Leaf_t* Node_RLLRR = new Leaf_t(
-			[](Patient patient) {patient.set_classification(malignant); return true; }
+			[](Patient& patient) {patient.set_classification(malignant); return true; }
 		);
 
 		Leaf_t* Node_RLLRL = new Leaf_t(
-			[](Patient patient) {patient.set_classification(benign); return false; }
+			[](Patient& patient) {patient.set_classification(benign); return false; }
 		);
 
 		root->set_right_node(Node_R);
@@ -72,8 +72,6 @@ public:
 		Node_RLL->set_right_node(Node_RLLR);
 		Node_RLLR->set_left_node(Node_RLLRL);
 		Node_RLLR->set_right_node(Node_RLLRR);
-
-
 		
 	};
 
@@ -81,7 +79,7 @@ public:
 		delete root;
 	}
 
-	void classify_patient(Patient patient) {
+	void classify_patient(Patient& patient) {
 		root->process(patient);
 	}
 
