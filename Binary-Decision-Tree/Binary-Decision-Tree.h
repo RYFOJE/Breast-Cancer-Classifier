@@ -58,7 +58,7 @@ class RootNode : public Node<T> {
 public:
 	
 	/** CONSTRUCTOR **/
-	RootNode(const std::function<bool(T)>& func) : Node(func) {};
+	RootNode(const std::function<bool(T)>& func) : Node<T>(func) {};
 
 	bool process(const T &val) const{
 		return Node<T>::make_decision(val);
@@ -80,5 +80,5 @@ protected:
 public:
 
 	/** CONSTRUCTOR **/
-	LeafNode(const std::function<bool(T)>& func) : Node(func) {};
+	LeafNode(const std::function<bool(T)>& func) : Node<T>(func) {};
 };
