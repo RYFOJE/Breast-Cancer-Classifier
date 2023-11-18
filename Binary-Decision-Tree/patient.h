@@ -27,6 +27,14 @@ namespace PatientInfo {
 		attribute_t bland_chromatin_;
 		attribute_t normal_nucleoli_;
 		attribute_t mitoses_;
+
+		Attributes(	attribute_t c_t, attribute_t si_u,	attribute_t sh_u,
+					attribute_t m_a, attribute_t s_e_s, attribute_t b_n,
+					attribute_t b_c, attribute_t n_n,	attribute_t m) :
+			clump_thickness_(c_t), size_uniformity_(si_u), shape_uniformity_(sh_u),
+			marginal_adhesion_(m_a), single_epithelial_size_(s_e_s), bare_nuclei_(b_n),
+			bland_chromatin_(b_c), normal_nucleoli_(n_n), mitoses_(m) {};
+
 	};
 
 

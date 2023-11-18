@@ -3,14 +3,19 @@
 
 int main() {
 
-	Attributes test_R(2, 2, 3, 3, 3, 3, 3, 3, 3);
-	Patient testPatient_R("Ryan Jennings", test_R);
+	Attributes test_RR (2, 2, 3, 3, 3, 3, 3, 3, 3); // Benign RR
+	Attributes test_RLR(2, 2, 3, 3, 3, 4, 3, 3, 3); // Malignant RLR
+	Patient testPatient_RR("Ryan Jennings", test_RR);
+	Patient testPatient_RLR("Ryan Jennings", test_RLR);
+
 
 
 	Classifier classifierClass;
 
-	classifierClass.classify_patient(testPatient_R);
-	
-	std::cout << "Patient Classified to: " << testPatient_R.get_classification();
+	classifierClass.classify_patient(testPatient_RR);
+	classifierClass.classify_patient(testPatient_RLR);
+
+	std::cout << "Patient Classified to: " << testPatient_RR.get_classification() << std::endl;
+	std::cout << "Patient Classified to: " << testPatient_RLR.get_classification() << std::endl;
 
 }
