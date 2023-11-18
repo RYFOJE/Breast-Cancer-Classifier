@@ -80,6 +80,68 @@ namespace PatientInfo {
 
 			verify_attribute_struct(values);
 		};
+		/**
+		 
+		
+		attribute_t clump_thickness_;
+		attribute_t size_uniformity_;
+		attribute_t shape_uniformity_;
+		attribute_t marginal_adhesion_;
+		attribute_t single_epithelial_size_;
+		attribute_t bare_nuclei_;
+		attribute_t bland_chromatin_;
+		attribute_t normal_nucleoli_;
+		attribute_t mitoses_;
+
+		*/
+
+		attribute_t get_clump_thickness() const {
+			return patientAttributes.clump_thickness_;
+		}
+		
+		attribute_t get_size_uniformity() const {
+			return patientAttributes.size_uniformity_;
+		}
+
+		attribute_t get_shape_uniformity() const {
+			return patientAttributes.shape_uniformity_;
+		}
+		
+		attribute_t get_marginal_adhesion() const {
+			return patientAttributes.marginal_adhesion_;
+		}
+
+		attribute_t get_single_epithelial_size() const {
+			return patientAttributes.single_epithelial_size_;
+		}
+
+		attribute_t get_bare_nuclei() const {
+			return patientAttributes.bare_nuclei_;
+		}
+
+		attribute_t get_bland_chromatin() const {
+			return patientAttributes.bland_chromatin_;
+		}
+
+		attribute_t get_normal_nucleoli() const {
+			return patientAttributes.normal_nucleoli_;
+		}
+
+		attribute_t get_mitoses() const {
+			return patientAttributes.mitoses_;
+		}
+
+		std::string get_patient_id() const {
+			return patientID_;
+		}
+
+		classifications get_classification() const {
+			return classification_;
+		}
+		
+		void set_classification(classifications classification) {
+			classification_ = classification;
+		}
 
 
 
