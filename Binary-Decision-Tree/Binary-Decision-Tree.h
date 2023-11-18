@@ -56,14 +56,6 @@ public:
 		rightNode = node;
 	}
 
-	Node* get_left_node() const{
-		return leftNode;
-	}
-
-	Node* get_right_node() const{
-		return rightNode;
-	}
-
 };
 
 template <typename T>
