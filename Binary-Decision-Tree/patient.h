@@ -60,7 +60,7 @@ namespace PatientInfo {
 
 		default:
 			throw std::invalid_argument("Error at classifcation_name, argument not valid");
-			return;
+			return "";
 		}
 	}
 
