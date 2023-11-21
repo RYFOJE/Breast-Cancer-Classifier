@@ -91,11 +91,11 @@ public:
 			[](Patient& patient) {return patient.get_size_uniformity() <= 4; }
 		);
 
-		Leaf_t* NodeLRR = new Leaf_t(
+		Leaf_t* Node_LRR = new Leaf_t(
 			[](Patient& patient) {patient.set_classification(benign); return false; }
 		);
 
-		Leaf_t* NodeLRL = new Leaf_t(
+		Leaf_t* Node_LRL = new Leaf_t(
 			[](Patient& patient) {patient.set_classification(malignant); return true; }
 		);
 
@@ -119,7 +119,7 @@ public:
 			[](Patient& patient) {patient.set_classification(benign); return false; }
 		);
 
-		Leaf_t* Node_LLRLL = new Leaf_t(
+		Leaf_t* Node_LLRRL = new Leaf_t(
 			[](Patient& patient) {patient.set_classification(malignant); return true; }
 		);
 
@@ -169,7 +169,7 @@ public:
 		Node_LLRLR->set_right_node(Node_LLRLRR);	// Leaf
 		Node_LLRLR->set_left_node(Node_LLRLRL);		// Decision
 
-		Node_LLRLRL->set_right_node(LLRLRLR);		// Leaf
+		Node_LLRLRL->set_right_node(Node_LLRLRLR);		// Leaf
 		Node_LLRLRL->set_right_node(Node_LLRLRLL);	// Leaf
 
 		/** DONE BUILDING LEFT SIDE OF TREE **/

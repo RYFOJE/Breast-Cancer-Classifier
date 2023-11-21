@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <iostream>
 
 
 
@@ -21,9 +22,11 @@ protected:
 	virtual bool make_decision(T &val) const {
 
 		if (!condition(val)) {
+			std::cout << "L";
 			return leftNode->make_decision(val);
 		}
 		else {
+			std::cout << "R";
 			return rightNode->make_decision(val);
 		}
 	};
@@ -96,6 +99,7 @@ class LeafNode : public Node<T> {
 protected:
 	
 	virtual bool make_decision(T& val) const override{
+		std::cout << std::endl;
 		return Node<T>::condition(val);
 	};
 
