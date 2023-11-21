@@ -26,7 +26,6 @@ public:
 		
 		// CREATING ALL NODES FOR RIGHT SIDE OF THE TREE
 
-		// Uniformity of cell size is <= 2
 		Node_t* Node_R = new Node_t(
 			[](Patient& patient) {return patient.get_bare_nuclei() <= 3; }
 		);
@@ -63,6 +62,8 @@ public:
 			[](Patient& patient) {patient.set_classification(benign); return false; }
 		);
 
+		/** LINKING THE NODES **/
+
 		root->set_right_node(Node_R);
 		Node_R->set_left_node(Node_RL);
 		Node_R->set_right_node(Node_RR);
@@ -76,6 +77,103 @@ public:
 		/** RIGHT SIDE OF THE TREE HAS BEEN BUILT **/
 
 
+		// CREATING ALL NODES FOR LEFT SIDE OF THE TREE
+
+		Node_t* Node_L = new Node_t(
+			[](Patient& patient) {return patient.get_shape_uniformity() <= 2; }
+		);
+
+		Node_t* Node_LR = new Node_t(
+			[](Patient& patient) {return patient.get_clump_thickness() <= 5; }
+		);
+
+		Node_t* Node_LL = new Node_t(
+			[](Patient& patient) {return patient.get_size_uniformity() <= 4; }
+		);
+
+		Leaf_t* NodeLRR = new Leaf_t(
+			[](Patient& patient) {patient.set_classification(benign); return false; }
+		);
+
+		Leaf_t* NodeLRL = new Leaf_t(
+			[](Patient& patient) {patient.set_classification(malignant); return true; }
+		);
+
+		Node_t* Node_LLR = new Node_t(
+			[](Patient& patient) {return patient.get_bare_nuclei() <= 2; }
+		);
+
+		Leaf_t* Node_LLL = new Leaf_t(
+			[](Patient& patient) {patient.set_classification(malignant); return true; }
+		);
+
+		Node_t* Node_LLRR = new Node_t(
+			[](Patient& patient) {return patient.get_marginal_adhesion() <= 3; }
+		);
+
+		Node_t* Node_LLRL = new Node_t(
+			[](Patient& patient) {return patient.get_clump_thickness() <= 6; }
+		);
+
+		Leaf_t* Node_LLRRR = new Leaf_t(
+			[](Patient& patient) {patient.set_classification(benign); return false; }
+		);
+
+		Leaf_t* Node_LLRLL = new Leaf_t(
+			[](Patient& patient) {patient.set_classification(malignant); return true; }
+		);
+
+		Node_t* Node_LLRLR = new Node_t(
+			[](Patient& patient) {return patient.get_size_uniformity() <= 3; }
+		);
+
+		Leaf_t* Node_LLRLRR = new Leaf_t(
+			[](Patient& patient) {patient.set_classification(malignant); return true; }
+		);
+
+		Node_t* Node_LLRLRL = new Node_t(
+			[](Patient& patient) {return patient.get_marginal_adhesion() <= 5; }
+		);
+
+		Leaf_t* Node_LLRLRLR = new Leaf_t(
+			[](Patient& patient) {patient.set_classification(benign); return false; }
+		);
+
+		Leaf_t* Node_LLRLRLL = new Leaf_t(
+			[](Patient& patient) {patient.set_classification(malignant); return true; }
+		);
+
+		Leaf_t* Node_LLRLL = new Leaf_t(
+			[](Patient& patient) {patient.set_classification(malignant); return true; }
+		);
+
+
+		root->set_left_node(Node_L);				// Decision
+		Node_L->set_right_node(Node_LR);			// Decision
+		Node_L->set_left_node(Node_LL);				// Decision
+		Node_LR->set_right_node(Node_LRR);			// Leaf
+		Node_LR->set_left_node(Node_LRL);			// Leaf
+
+		Node_LL->set_right_node(Node_LLR);			// Decision
+		Node_LL->set_left_node(Node_LLL);			// Leaf
+
+		Node_LLR->set_right_node(Node_LLRR);		// Decision
+		Node_LLR->set_left_node(Node_LLRL);			// Decision
+
+		Node_LLRR->set_right_node(Node_LLRRR);		// Leaf
+		Node_LLRR->set_left_node(Node_LLRRL);		// Leaf
+		
+		Node_LLRL->set_right_node(Node_LLRLR);		// Decision
+		Node_LLRL->set_left_node(Node_LLRLL);		// Leaf
+
+		Node_LLRLR->set_right_node(Node_LLRLRR);	// Leaf
+		Node_LLRLR->set_left_node(Node_LLRLRL);		// Decision
+
+		Node_LLRLRL->set_right_node(LLRLRLR);		// Leaf
+		Node_LLRLRL->set_right_node(Node_LLRLRLL);	// Leaf
+
+		/** DONE BUILDING LEFT SIDE OF TREE **/
+		/** DONE BUILDING TREE **/
 
 	};
 
