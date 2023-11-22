@@ -13,6 +13,8 @@ namespace Console {
 
 	class MainProgram {
 
+		Patients_t patients;
+
 	public:
 
 		// Get the instance of the MainProgram
