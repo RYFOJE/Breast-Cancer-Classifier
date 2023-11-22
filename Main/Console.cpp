@@ -1,7 +1,13 @@
 #include "Console_Singleton.hpp"
 
-int main() {
+namespace Console {
 	
-	
-	
+	MainProgram::MainProgram() {
+		
+		fs::path input_path = get_input_path();
+
+
+
+	}
+
 }

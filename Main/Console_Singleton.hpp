@@ -1,20 +1,40 @@
 #pragma once
 
-class MainProgram {
+#include "Breast-Cancer-Classifier.hpp"
 
-public:
+#include <filesystem>
+#include <vector>
 
-	// Get the instance of the MainProgram
-	static MainProgram& getInstance() {
-		static MainProgram instance;
-		return instance;
-	}
+namespace Console {
 
-private:
+	namespace fs = std::filesystem;
 
-	
-	// Private copy constructor and assignment operator to prevent copying therefore making it a singleton
-	MainProgram(const MainProgram&) = delete;
-	MainProgram& operator=(const MainProgram&) = delete;
+	typedef std::vector<Patient> Patients_t;
 
-};
+	class MainProgram {
+
+	public:
+
+		// Get the instance of the MainProgram
+		static MainProgram& getInstance() {
+			static MainProgram instance;
+			return instance;
+		}
+
+	private:
+
+		// Constructor
+		MainProgram();
+
+		const fs::path get_input_path();
+		Patients_t get_patients(const fs::path& input_path);
+		void output_patients(const Patients_t& patients);
+		void print_results(const Patients_t& patients);
+
+		// Private copy constructor and assignment operator to prevent copying therefore making it a singleton
+		MainProgram(const MainProgram&) = delete;
+		MainProgram& operator=(const MainProgram&) = delete;
+
+	};
+
+}
