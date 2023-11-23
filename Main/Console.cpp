@@ -26,6 +26,7 @@ namespace Console {
 		std::cout << "\033[2J\033[1;1H";
 	}
 
+	void wait_for_enter(std::string const message) {
 	MainProgram::MainProgram() {
 		
 		fs::path input_path = get_input_path();
@@ -48,7 +49,7 @@ namespace Console {
 			}
 			catch (const std::exception&)
 			{
-
+				wait_for_enter("File does not exist.");
 			}
 
 		}
