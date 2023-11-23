@@ -8,12 +8,12 @@
 namespace Console {
 
 	namespace fs = std::filesystem;
-
 	typedef std::vector<Patient> Patients_t;
+	const fs::path OUTPUT_PATH = fs::path("results.csv");
 
 	class MainProgram {
 
-		Patients_t patients;
+		Patients_t patients_;
 
 	public:
 
