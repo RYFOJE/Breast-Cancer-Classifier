@@ -11,6 +11,8 @@ namespace Console {
 		classify_patients(patients_);
 		print_results(patients_);
 
+		output_all();
+
 	}
 
 	const fs::path get_filepath() {
@@ -171,6 +173,48 @@ namespace Console {
 				std::cout << e.what() << std::endl;
 			}
 
+		}
+
+	}
+
+	void output_patient(std::ofstream& file, Patient const& patient) {
+		
+		file << patient.get_patient_id() << ",";
+		file << patient.get_clump_thickness() << ",";
+		file << patient.get_size_uniformity() << ",";
+		file << patient.get_shape_uniformity() << ",";
+		file << patient.get_marginal_adhesion() << ",";
+		file << patient.get_single_epithelial_size() << ",";
+		file << patient.get_bare_nuclei() << ",";
+		file << patient.get_bland_chromatin() << ",";
+		file << patient.get_normal_nucleoli() << ",";
+		file << patient.get_mitoses() << ",";
+
+		if (patient.get_classification() == PatientInfo::benign) {
+			file << "benign";
+		}
+		else {
+			file << "malignant";
+		}
+
+		file << std::endl;
+
+	}
+
+	void MainProgram::output_all() const {
+
+		try {
+			std::ofstream file("results.csv");
+			if (!file.is_open()) {
+				throw std::invalid_argument("File not opened");
+			}
+			for (auto& patient : patients_) {
+				output_patient(file, patient);
+			}
+		}
+
+		catch (const std::exception& e) {
+			std::cout << e.what() << std::endl;
 		}
 
 	}

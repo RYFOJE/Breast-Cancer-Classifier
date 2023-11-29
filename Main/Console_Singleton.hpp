@@ -65,6 +65,8 @@ namespace Console {
 		*/
 		void print_results(const Patients_t& patients);
 
+		void output_all() const;
+
 		// Private copy constructor and assignment operator to prevent copying therefore making it a singleton
 		MainProgram(const MainProgram&) = delete;
 		MainProgram& operator=(const MainProgram&) = delete;
