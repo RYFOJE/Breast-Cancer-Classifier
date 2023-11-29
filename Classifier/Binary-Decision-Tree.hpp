@@ -31,6 +31,8 @@ protected:
 		}
 	};
 
+	
+
 public:
 
 	/** CONSTRUCTOR **/
@@ -72,6 +74,24 @@ public:
 		rightNode = node;
 	}
 
+	bool recursive_verify_tree() const {
+
+		if (leftNode != nullptr) {
+			if (!leftNode->recursive_verify_tree()) {
+				return false;
+			}
+		}
+
+		if (rightNode != nullptr) {
+			if (!rightNode->recursive_verify_tree()) {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
 };
 
 template <typename T>
@@ -107,4 +127,9 @@ public:
 
 	/** CONSTRUCTOR **/
 	LeafNode(const std::function<bool(T&)>& func) : Node<T>(func) {};
+
+	bool recursive_verify_tree() const {
+		return true;
+	}
+
 };

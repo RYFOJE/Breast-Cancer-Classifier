@@ -169,8 +169,8 @@ public:
 		Node_LLRLR->set_right_node(Node_LLRLRR);	// Leaf
 		Node_LLRLR->set_left_node(Node_LLRLRL);		// Decision
 
-		Node_LLRLRL->set_right_node(Node_LLRLRLR);		// Leaf
-		Node_LLRLRL->set_right_node(Node_LLRLRLL);	// Leaf
+		Node_LLRLRL->set_right_node(Node_LLRLRLR);	// Leaf
+		Node_LLRLRL->set_left_node(Node_LLRLRLL);	// Leaf
 
 		/** DONE BUILDING LEFT SIDE OF TREE **/
 		/** DONE BUILDING TREE **/
@@ -181,8 +181,12 @@ public:
 		delete root;
 	}
 
-	void classify_patient(Patient& patient) {
-		root->process(patient);
+	bool classify_patient(Patient& patient) {
+		return root->process(patient);
+	}
+
+	bool verify_tree() {
+		return root->recursive_verify_tree();
 	}
 
 };
